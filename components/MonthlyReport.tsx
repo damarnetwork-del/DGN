@@ -147,20 +147,20 @@ const MonthlyReport: React.FC<MonthlyReportProps> = ({ transactions }) => {
   };
 
   return (
-    <div className="bg-slate-800 p-6 rounded-2xl shadow-lg">
+    <div className="bg-white p-6 rounded-2xl shadow-sm border">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
-        <h3 className="text-xl font-bold text-white">Laporan Keuangan Bulanan</h3>
+        <h3 className="text-xl font-bold text-gray-900">Laporan Keuangan Bulanan</h3>
         <div className="flex items-center gap-2 w-full sm:w-auto">
           <input
             type="month"
             value={selectedMonth}
             onChange={(e) => setSelectedMonth(e.target.value)}
-            className="w-full sm:w-auto bg-slate-700 border border-slate-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+            className="w-full sm:w-auto bg-gray-50 border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-900 focus:outline-none focus:ring-teal-500 focus:border-teal-500"
           />
           <button
             onClick={handleDownloadPDF}
             disabled={!reportData}
-            className="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-slate-300 font-bold py-2 px-4 rounded-lg transition-colors duration-200 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-lg transition-colors duration-200 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Unduh Laporan"
           >
             <DownloadIcon className="w-4 h-4" />
@@ -170,30 +170,30 @@ const MonthlyReport: React.FC<MonthlyReportProps> = ({ transactions }) => {
       </div>
 
       {!reportData || reportData.transactions.length === 0 ? (
-        <p className="text-slate-400 text-center py-8">Tidak ada data transaksi untuk bulan {reportData?.monthName || 'yang dipilih'}.</p>
+        <p className="text-gray-500 text-center py-8">Tidak ada data transaksi untuk bulan {reportData?.monthName || 'yang dipilih'}.</p>
       ) : (
         <div className="space-y-6">
           {/* Summary Section */}
-          <div className="bg-slate-850 p-4 rounded-lg">
-            <h4 className="font-semibold text-white text-lg mb-2">Rekapitulasi {reportData.monthName}</h4>
+          <div className="bg-gray-50 p-4 rounded-lg border">
+            <h4 className="font-semibold text-gray-900 text-lg mb-2">Rekapitulasi {reportData.monthName}</h4>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
-              <div className="p-2 bg-slate-900 rounded"><p className="text-sm text-slate-400">Pemasukan</p><p className="font-bold text-green-400">Rp {reportData.totalIncome.toLocaleString('id-ID')}</p></div>
-              <div className="p-2 bg-slate-900 rounded"><p className="text-sm text-slate-400">Pengeluaran</p><p className="font-bold text-red-400">Rp {reportData.totalExpense.toLocaleString('id-ID')}</p></div>
-              <div className="p-2 bg-slate-900 rounded"><p className="text-sm text-slate-400">Saldo</p><p className={`font-bold ${reportData.balance >= 0 ? 'text-teal-400' : 'text-red-500'}`}>Rp {reportData.balance.toLocaleString('id-ID')}</p></div>
-              <div className="p-2 bg-slate-900 rounded"><p className="text-sm text-slate-400">Via Transfer</p><p className="font-bold text-white">Rp {reportData.totalTransfer.toLocaleString('id-ID')}</p></div>
-              <div className="p-2 bg-slate-900 rounded"><p className="text-sm text-slate-400">Via Tunai</p><p className="font-bold text-white">Rp {reportData.totalCash.toLocaleString('id-ID')}</p></div>
+              <div className="p-2 bg-white rounded border"><p className="text-sm text-gray-500">Pemasukan</p><p className="font-bold text-green-500">Rp {reportData.totalIncome.toLocaleString('id-ID')}</p></div>
+              <div className="p-2 bg-white rounded border"><p className="text-sm text-gray-500">Pengeluaran</p><p className="font-bold text-red-500">Rp {reportData.totalExpense.toLocaleString('id-ID')}</p></div>
+              <div className="p-2 bg-white rounded border"><p className="text-sm text-gray-500">Saldo</p><p className={`font-bold ${reportData.balance >= 0 ? 'text-teal-500' : 'text-red-500'}`}>Rp {reportData.balance.toLocaleString('id-ID')}</p></div>
+              <div className="p-2 bg-white rounded border"><p className="text-sm text-gray-500">Via Transfer</p><p className="font-bold text-gray-900">Rp {reportData.totalTransfer.toLocaleString('id-ID')}</p></div>
+              <div className="p-2 bg-white rounded border"><p className="text-sm text-gray-500">Via Tunai</p><p className="font-bold text-gray-900">Rp {reportData.totalCash.toLocaleString('id-ID')}</p></div>
             </div>
           </div>
           
           {/* Profit Sharing Section */}
           {reportData.balance > 0 && (
-            <div className="bg-slate-850 p-4 rounded-lg">
-                <h4 className="font-semibold text-white text-lg mb-2">Rincian Bagi Hasil</h4>
+            <div className="bg-gray-50 p-4 rounded-lg border">
+                <h4 className="font-semibold text-gray-900 text-lg mb-2">Rincian Bagi Hasil</h4>
                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                     {reportData.partners.map(partner => (
-                        <div key={partner} className="p-2 bg-slate-900 rounded">
-                            <p className="text-sm text-slate-400">{partner}</p>
-                            <p className="font-semibold text-white">Rp {reportData.profitShare.toLocaleString('id-ID', { minimumFractionDigits: 2 })}</p>
+                        <div key={partner} className="p-2 bg-white rounded border">
+                            <p className="text-sm text-gray-500">{partner}</p>
+                            <p className="font-semibold text-gray-900">Rp {reportData.profitShare.toLocaleString('id-ID', { minimumFractionDigits: 2 })}</p>
                         </div>
                     ))}
                 </div>
@@ -202,10 +202,10 @@ const MonthlyReport: React.FC<MonthlyReportProps> = ({ transactions }) => {
 
           {/* Transaction Table */}
           <div>
-            <h4 className="font-semibold text-white text-lg mb-2">Rincian Transaksi</h4>
-            <div className="max-h-96 overflow-y-auto pr-2">
-              <table className="w-full text-sm text-left text-slate-300">
-                <thead className="text-xs text-slate-400 uppercase bg-slate-850 sticky top-0">
+            <h4 className="font-semibold text-gray-900 text-lg mb-2">Rincian Transaksi</h4>
+            <div className="max-h-96 overflow-y-auto overflow-x-auto pr-2">
+              <table className="w-full text-sm text-left text-gray-700">
+                <thead className="text-xs text-gray-500 uppercase bg-gray-100 sticky top-0">
                   <tr>
                     <th scope="col" className="px-4 py-3">Tanggal</th>
                     <th scope="col" className="px-4 py-3">Deskripsi</th>
@@ -216,12 +216,12 @@ const MonthlyReport: React.FC<MonthlyReportProps> = ({ transactions }) => {
                 </thead>
                 <tbody>
                   {reportData.transactions.map(t => (
-                    <tr key={t.id} className="border-b border-slate-700 hover:bg-slate-850">
+                    <tr key={t.id} className="border-b border-gray-200 hover:bg-gray-50">
                       <td className="px-4 py-2">{new Date(t.date).toLocaleDateString('id-ID')}</td>
                       <td className="px-4 py-2">{t.description}</td>
                       <td className="px-4 py-2">{t.paymentMethod}</td>
-                      <td className="px-4 py-2 text-right text-green-400">{t.type === 'income' ? `Rp ${t.amount.toLocaleString('id-ID')}` : '-'}</td>
-                      <td className="px-4 py-2 text-right text-red-400">{t.type === 'expense' ? `Rp ${t.amount.toLocaleString('id-ID')}` : '-'}</td>
+                      <td className="px-4 py-2 text-right text-green-500">{t.type === 'income' ? `Rp ${t.amount.toLocaleString('id-ID')}` : '-'}</td>
+                      <td className="px-4 py-2 text-right text-red-500">{t.type === 'expense' ? `Rp ${t.amount.toLocaleString('id-ID')}` : '-'}</td>
                     </tr>
                   ))}
                 </tbody>

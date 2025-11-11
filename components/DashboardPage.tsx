@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
 import { Transaction, TransactionType, Customer } from '../types';
-import ExpenseChart from './ExpenseChart';
 import AddTransactionForm from './AddTransactionForm';
 import AddCustomerForm from './AddCustomerForm';
 import ArrowUpIcon from './icons/ArrowUpIcon';
@@ -13,13 +12,13 @@ interface DashboardPageProps {
 }
 
 const StatCard: React.FC<{ title: string; amount: number; icon: React.ReactNode; color: string; }> = ({ title, amount, icon, color }) => (
-  <div className="bg-slate-800 p-6 rounded-2xl shadow-lg flex items-center gap-4">
+  <div className="bg-white p-6 rounded-2xl shadow-sm flex items-center gap-4 border">
     <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center ${color}`}>
       {icon}
     </div>
     <div>
-      <p className="text-sm text-slate-400">{title}</p>
-      <p className="text-2xl font-bold text-white">Rp {amount.toLocaleString('id-ID')}</p>
+      <p className="text-sm text-gray-500">{title}</p>
+      <p className="text-2xl font-bold text-gray-900">Rp {amount.toLocaleString('id-ID')}</p>
     </div>
   </div>
 );
@@ -29,8 +28,8 @@ const TabButton: React.FC<{label: string; isActive: boolean; onClick: () => void
       onClick={onClick}
       className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors outline-none focus:outline-none ${
           isActive 
-          ? 'bg-slate-800 text-teal-400 border-b-2 border-teal-400'
-          : 'text-slate-400 hover:text-white border-b-2 border-transparent'
+          ? 'text-teal-500 border-b-2 border-teal-500'
+          : 'text-gray-500 hover:text-gray-800 border-b-2 border-transparent'
       }`}
   >
       {label}
@@ -80,9 +79,9 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ transactions, onAddTransa
         />
       </div>
       
-      <div className="bg-slate-800 p-6 rounded-2xl shadow-lg">
-        <h3 className="text-xl font-bold text-white mb-4">Menu Input</h3>
-        <div className="border-b border-slate-700">
+      <div className="bg-white p-6 rounded-2xl shadow-sm border">
+        <h3 className="text-xl font-bold text-gray-900 mb-4">Menu Input</h3>
+        <div className="border-b border-gray-200">
             <TabButton label="Tambah Transaksi" isActive={activeTab === 'transaction'} onClick={() => setActiveTab('transaction')} />
             <TabButton label="Tambah Pelanggan" isActive={activeTab === 'customer'} onClick={() => setActiveTab('customer')} />
         </div>
@@ -94,10 +93,6 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ transactions, onAddTransa
                 <AddCustomerForm onAddCustomer={onAddCustomer} />
             )}
         </div>
-      </div>
-
-      <div className="h-96">
-        <ExpenseChart transactions={transactions} />
       </div>
     </div>
   );

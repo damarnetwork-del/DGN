@@ -8,7 +8,6 @@ import TransactionList from './components/TransactionList';
 import AddTransactionForm from './components/AddTransactionForm';
 import CustomerList from './components/CustomerList';
 import AddCustomerForm from './components/AddCustomerForm';
-import Settings from './components/Settings';
 import EditTransactionModal from './components/EditTransactionModal';
 import MonthlyReport from './components/MonthlyReport';
 
@@ -27,7 +26,7 @@ const App: React.FC = () => {
     const allUsers = savedUsers ? JSON.parse(savedUsers) : [];
     
     if (allUsers.length === 0) {
-      const adminUser = { id: 'admin-user', username: 'admin', password: 'daden', role: UserRole.ADMIN };
+      const adminUser = { id: 'admin-user', username: 'amin', password: 'password', role: UserRole.ADMIN };
       allUsers.push(adminUser);
       localStorage.setItem('users', JSON.stringify(allUsers));
     }
@@ -75,20 +74,6 @@ const App: React.FC = () => {
     localStorage.removeItem('sessionUser');
     setCurrentUser(null);
   };
-  
-  // User Management Handlers (Admin)
-  const handleAddUser = (user: Omit<User, 'id'>) => {
-    const newUser = { ...user, id: new Date().toISOString() };
-    const updatedUsers = [...users, newUser];
-    setUsers(updatedUsers);
-    localStorage.setItem('users', JSON.stringify(updatedUsers));
-  };
-  
-  const handleDeleteUser = (id: string) => {
-    const updatedUsers = users.filter(u => u.id !== id);
-    setUsers(updatedUsers);
-    localStorage.setItem('users', JSON.stringify(updatedUsers));
-  };
 
   // Transaction Handlers
   const handleAddTransaction = (transaction: Omit<Transaction, 'id'>) => {
@@ -134,7 +119,6 @@ const App: React.FC = () => {
     dashboard: 'Dasbor',
     transactions: 'Riwayat Transaksi',
     customers: 'Daftar Pelanggan',
-    settings: 'Pengaturan',
   };
 
   const renderPage = () => {
@@ -158,12 +142,6 @@ const App: React.FC = () => {
         );
       case 'customers':
         return <CustomerList customers={customers} onDeleteCustomer={handleDeleteCustomer} />;
-      case 'settings':
-        return <Settings 
-                    currentUser={currentUser}
-                    users={users}
-                    onAddUser={handleAddUser}
-                    onDeleteUser={handleDeleteUser} />;
       default:
         return <DashboardPage 
                     transactions={transactions} 
@@ -174,11 +152,11 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen bg-slate-900 text-slate-200">
+    <div className="flex h-screen bg-gray-100 text-gray-800">
       <Sidebar currentView={currentView} onNavigate={setCurrentView} />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header username={currentUser.username} onLogout={handleLogout} pageTitle={pageTitles[currentView]} />
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-slate-900 p-6">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
           <div className="container mx-auto max-w-8xl">
             {renderPage()}
           </div>

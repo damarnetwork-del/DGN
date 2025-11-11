@@ -19,7 +19,7 @@ export const getFinancialSummary = async (transactions: Transaction[]): Promise<
   const model = 'gemini-2.5-flash';
 
   const formattedTransactions = transactions.map(t => 
-    `- ${t.type === 'income' ? 'Pemasukan' : 'Pengeluaran'}: ${t.description} - Rp ${t.amount.toLocaleString('id-ID')} (${t.category || 'Tidak ada kategori'}) pada ${new Date(t.date).toLocaleDateString('id-ID')}`
+    `- ${t.type === 'income' ? 'Pemasukan' : 'Pengeluaran'}: ${t.description} - Rp ${t.amount.toLocaleString('id-ID')} pada ${new Date(t.date).toLocaleDateString('id-ID')}`
   ).join('\n');
 
   const prompt = `

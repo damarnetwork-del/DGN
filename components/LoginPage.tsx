@@ -19,15 +19,15 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-slate-800 p-8 rounded-2xl shadow-lg">
-        <h1 className="text-3xl font-bold text-center text-white mb-2">
-          Damar Global <span className="text-teal-400">Network</span>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-sm border">
+        <h1 className="text-3xl font-bold text-center text-gray-900 mb-2">
+          Damar Global <span className="text-teal-500">Network</span>
         </h1>
-        <p className="text-center text-slate-400 mb-8">Silakan masuk untuk melanjutkan</p>
+        <p className="text-center text-gray-500 mb-8">Silakan masuk untuk melanjutkan</p>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="username" className="block text-sm font-medium text-slate-300">
+            <label htmlFor="username" className="block text-sm font-medium text-gray-700">
               Nama Pengguna
             </label>
             <input
@@ -35,13 +35,13 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="mt-1 block w-full bg-slate-700 border border-slate-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+              className="mt-1 block w-full bg-gray-50 border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-900 focus:outline-none focus:ring-teal-500 focus:border-teal-500"
               required
-              placeholder="e.g., admin"
+              placeholder="e.g., amin"
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-slate-300">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
               Kata Sandi
             </label>
             <input
@@ -49,12 +49,12 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full bg-slate-700 border border-slate-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+              className="mt-1 block w-full bg-gray-50 border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-900 focus:outline-none focus:ring-teal-500 focus:border-teal-500"
               required
               placeholder="••••••••"
             />
           </div>
-          {error && <p className="text-red-400 text-sm text-center">{error}</p>}
+          {error && <p className="text-red-500 text-sm text-center">{error}</p>}
           <button
             type="submit"
             className="w-full flex justify-center bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-200"

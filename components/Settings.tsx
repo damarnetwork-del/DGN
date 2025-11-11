@@ -20,8 +20,8 @@ const Settings: React.FC<SettingsProps> = ({ currentUser, users, onAddUser, onDe
           onDeleteUser={onDeleteUser}
         />
       ) : (
-         <div className="bg-slate-800 p-6 rounded-2xl shadow-lg">
-            <p className="text-slate-400 text-center">Hanya admin yang dapat mengakses halaman pengaturan.</p>
+         <div className="bg-white p-6 rounded-2xl shadow-lg border">
+            <p className="text-gray-500 text-center">Hanya admin yang dapat mengakses halaman pengaturan.</p>
         </div>
       )}
     </div>

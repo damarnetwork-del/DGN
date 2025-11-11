@@ -1,13 +1,7 @@
+
 export enum TransactionType {
   INCOME = 'income',
   EXPENSE = 'expense',
-}
-
-export enum ExpenseCategory {
-  CUSTOMER_DUES = 'Iuran Pelanggan',
-  ISP_DUES = 'Iuran Isp',
-  MAINTENANCE = 'Mantenance',
-  SALARY = 'Gaji',
 }
 
 export enum PaymentMethod {
@@ -15,14 +9,24 @@ export enum PaymentMethod {
     CASH = 'Tunai',
 }
 
+// FIX: Add ExpenseCategory enum as it was missing and causing an error in ExpenseChart.tsx.
+export enum ExpenseCategory {
+  OPERATIONAL = 'Operasional',
+  SALARY = 'Gaji',
+  RENT = 'Sewa',
+  UTILITIES = 'Listrik & Internet',
+  OTHER = 'Lain-lain',
+}
+
 export interface Transaction {
   id: string;
   description: string;
   amount: number;
   type: TransactionType;
-  category: ExpenseCategory | null;
   date: string; // ISO 8601 format
   paymentMethod: PaymentMethod;
+  // FIX: Add optional category field to Transaction interface to support expense categorization.
+  category?: ExpenseCategory;
 }
 
 export enum SubscriptionCategory {
@@ -53,4 +57,4 @@ export interface User {
   role: UserRole;
 }
 
-export type View = 'dashboard' | 'transactions' | 'customers' | 'settings';
+export type View = 'dashboard' | 'transactions' | 'customers';

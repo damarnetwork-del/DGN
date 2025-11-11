@@ -35,15 +35,15 @@ const ExpenseChart: React.FC<ExpenseChartProps> = ({ transactions }) => {
 
   if (expenseData.length === 0) {
     return (
-      <div className="bg-slate-800 p-6 rounded-2xl shadow-lg flex items-center justify-center h-full">
-        <p className="text-slate-400">Belum ada data pengeluaran untuk ditampilkan.</p>
+      <div className="bg-white p-6 rounded-2xl shadow-lg flex items-center justify-center h-full border">
+        <p className="text-gray-500">Belum ada data pengeluaran untuk ditampilkan.</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-slate-800 p-6 rounded-2xl shadow-lg h-full flex flex-col">
-      <h3 className="text-xl font-bold text-white mb-4">Distribusi Pengeluaran</h3>
+    <div className="bg-white p-6 rounded-2xl shadow-lg h-full flex flex-col border">
+      <h3 className="text-xl font-bold text-gray-900 mb-4">Distribusi Pengeluaran</h3>
       <div className="flex-grow w-full h-full">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
@@ -61,7 +61,7 @@ const ExpenseChart: React.FC<ExpenseChartProps> = ({ transactions }) => {
                 const x = cx + radius * Math.cos(-midAngle * (Math.PI / 180));
                 const y = cy + radius * Math.sin(-midAngle * (Math.PI / 180));
                 return (
-                  <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" fontSize={12}>
+                  <text x={x} y={y} fill="#333" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" fontSize={12}>
                     {`${(percent * 100).toFixed(0)}%`}
                   </text>
                 );
@@ -73,8 +73,8 @@ const ExpenseChart: React.FC<ExpenseChartProps> = ({ transactions }) => {
             </Pie>
             <Tooltip
               contentStyle={{
-                backgroundColor: 'rgba(30, 41, 59, 0.8)',
-                borderColor: '#475569',
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                borderColor: '#ccc',
                 borderRadius: '0.75rem',
               }}
               formatter={(value: number) => `Rp ${value.toLocaleString('id-ID')}`}

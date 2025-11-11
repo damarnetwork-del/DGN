@@ -28,9 +28,9 @@ const FinancialSummary: React.FC<FinancialSummaryProps> = ({ transactions }) => 
   }, [transactions]);
 
   return (
-    <div className="bg-slate-800 p-6 rounded-2xl shadow-lg">
+    <div className="bg-white p-6 rounded-2xl shadow-sm border">
       <div className="flex justify-between items-center mb-4">
-        <h3 className="text-xl font-bold text-white">Ringkasan Cerdas</h3>
+        <h3 className="text-xl font-bold text-gray-900">Ringkasan Cerdas</h3>
         <button
           onClick={handleGetSummary}
           disabled={isLoading}
@@ -49,12 +49,12 @@ const FinancialSummary: React.FC<FinancialSummaryProps> = ({ transactions }) => 
         </div>
       )}
 
-      {error && <p className="text-red-400">{error}</p>}
+      {error && <p className="text-red-500">{error}</p>}
       
       {summary && (
-        <div className="prose prose-invert prose-sm max-w-none text-slate-300" dangerouslySetInnerHTML={{ __html: summary.replace(/\n/g, '<br />') }} />
+        <div className="prose prose-sm max-w-none text-gray-600" dangerouslySetInnerHTML={{ __html: summary.replace(/\n/g, '<br />') }} />
       )}
-      {!summary && !isLoading && <p className="text-slate-400 text-sm">Klik tombol untuk mendapatkan analisis keuangan dari AI.</p>}
+      {!summary && !isLoading && <p className="text-gray-500 text-sm">Klik tombol untuk mendapatkan analisis keuangan dari AI.</p>}
     </div>
   );
 };
